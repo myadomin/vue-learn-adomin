@@ -41,12 +41,15 @@ module.exports = (options = {}) => ({
     }]
   },
   plugins: [
+    // build出 vendor manifest
     new webpack.optimize.CommonsChunkPlugin({
       names: ['vendor', 'manifest']
     }),
+    // main.js el:#app 挂载在src/index.html的#app
     new HtmlWebpackPlugin({
       template: 'src/index.html'
     }),
+    // 编译完成动态通知
     new WebpackNotifierPlugin({
       title: "Notify",
       excludeWarnings: true,
