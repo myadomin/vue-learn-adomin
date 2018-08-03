@@ -7,10 +7,14 @@ const publicPath = ''
 
 module.exports = (options = {}) => ({
   entry: {
+    // vendor感觉没有什么用 CommonsChunkPlugin会自动提取
     vendor: './src/vendor',
+    // babel-polyfill es6兼容性 也可以在入口文件import不写在这里
     index: ['babel-polyfill', './src/main.js']
   },
   output: {
+    // options.dev npm run 传过来的？
+    // publicPath如何理解？
     path: resolve(__dirname, 'dist'),
     filename: options.dev ? '[name].js' : '[name].js?[chunkhash]',
     chunkFilename: '[id].js?[chunkhash]',
@@ -41,7 +45,8 @@ module.exports = (options = {}) => ({
     }]
   },
   plugins: [
-    // build出 vendor manifest
+    // 这里配置错误 参考下面
+    // https://www.jb51.net/article/131865.htm
     new webpack.optimize.CommonsChunkPlugin({
       names: ['vendor', 'manifest']
     }),
