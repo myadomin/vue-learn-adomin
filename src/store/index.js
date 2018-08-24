@@ -1,5 +1,5 @@
 import Vuex from 'vuex';
-import user from './modules/user';
+import counter from './modules/counter';
 import state from './state';
 import getters from './getters';
 import mutations from './mutations';
@@ -11,6 +11,6 @@ export default new Vuex.Store({
     mutations,
     actions,
     modules: {
-        user
+        counter
     }
 });

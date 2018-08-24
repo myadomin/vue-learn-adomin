@@ -7,7 +7,6 @@ const publicPath = ''
 
 module.exports = (options = {}) => ({
   entry: {
-    // vendor感觉没有什么用 CommonsChunkPlugin会自动提取
     vendor: './src/vendor',
     // babel-polyfill es6兼容性 也可以在入口文件import不写在这里
     index: ['babel-polyfill', './src/main.js']
