@@ -10,39 +10,39 @@
 </template>
 
 <script>
-import HelloWorld from '@/components/HelloWorld.vue';
-import API from '@/api/index.js';
+import HelloWorld from '@/components/HelloWorld.vue'
+import API from '@/api/index.js'
 import { mapState } from 'vuex'
 
 export default {
-    name: 'home',
-    components: {
-        HelloWorld
-    },
-    data () {
-        return {
-        }
-    },
-    computed: {
-        ...mapState('counter', [
-            'number'
-        ])
-    },
-    methods: {
-        getProducts () {
-            API.getProducts().then((res) => {
-                console.log(res, 11);
-            });
-        },
-        getProductsBuy() {
-            API.getProductsBuy().then((res) => {
-                console.log(res, 22);
-            });
-        },
-        dispatch () {
-            this.$store.dispatch('counter/increment', {num: 1})
-        }
+  name: 'home',
+  components: {
+    HelloWorld
+  },
+  data () {
+    return {
     }
+  },
+  computed: {
+    ...mapState('counter', [
+      'number'
+    ])
+  },
+  methods: {
+    getProducts () {
+      API.getProducts().then((res) => {
+        console.log(res, 11)
+      })
+    },
+    getProductsBuy () {
+      API.getProductsBuy().then((res) => {
+        console.log(res, 22)
+      })
+    },
+    dispatch () {
+      this.$store.dispatch('counter/increment', {num: 1})
+    }
+  }
 }
 </script>
 

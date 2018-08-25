@@ -1,4 +1,5 @@
 const resolve = require('path').resolve
+const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const url = require('url')
@@ -20,28 +21,47 @@ module.exports = (options = {}) => ({
     publicPath: options.dev ? '/assets/' : publicPath
   },
   module: {
-    rules: [{
-      test: /\.vue$/,
-      use: ['vue-loader']
-    }, {
-      test: /\.js$/,
-      use: ['babel-loader'],
-      exclude: /node_modules/
-    }, {
-      test: /\.css$/,
-      use: ['style-loader', 'css-loader']
-    }, {
-      test: /\.styl$/,
-      use: ['style-loader', 'css-loader', 'stylus-loader',]
-    }, {
-      test: /\.(png|jpg|jpeg|gif|eot|ttf|woff|woff2|svg|svgz)(\?.+)?$/,
-      use: [{
-        loader: 'url-loader',
-        options: {
-          limit: 10000
-        }
+    rules: [
+      {
+        test: /\.(js|vue)$/,
+        include: [resolve(__dirname, 'src')],
+        // 一定要加这个 否则检测不到
+        enforce: 'pre',
+        use: [{
+          loader: 'eslint-loader',
+          options: {
+            // 不符合Eslint规则时只console warning(默认false 直接error)
+            // emitWarning: true
+          }
+        }]
+      },
+      {
+        test: /\.vue$/,
+        exclude: /node_modules/,
+        use: ['vue-loader']
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: ['babel-loader']
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
+      },
+      {
+        test: /\.styl$/,
+        use: ['style-loader', 'css-loader', 'stylus-loader']
+      },
+      {
+        test: /\.(png|jpg|jpeg|gif|eot|ttf|woff|woff2|svg|svgz)(\?.+)?$/,
+        use: [{
+          loader: 'url-loader',
+          options: {
+            limit: 10000
+          }
+        }]
       }]
-    }]
   },
   plugins: [
     // 这里配置错误 参考下面
@@ -53,42 +73,41 @@ module.exports = (options = {}) => ({
     new HtmlWebpackPlugin({
       template: 'src/index.html'
     }),
-    // 编译完成动态通知
+    // 编译完成动态通知是否有error
     new WebpackNotifierPlugin({
-      title: "Notify",
+      title: 'Notify',
       excludeWarnings: true,
       skipFirstNotification: true
-    }),
-    new webpack.NoErrorsPlugin(),
+    })
   ],
   resolve: {
-    //extensions: ['', '.js', '.vue'],
+    // extensions: ['', '.js', '.vue'],
     alias: {
       '@': resolve(__dirname, 'src')
     }
   },
   devServer: {
     host: 'localhost',
-    port: 8888,
+    port: 8100,
     // webpack.config.js中webpack-dev-server --inline --hot 热更新
     // 自动打开浏览器
     open: true,
     proxy: {
-        // http://localhost:8888/api/index.php/xxx 转发到 http://beeossdev.egtest.cn:7777/api/index.php/xxx 跨域
-        '/api/index.php/*': {
-            target: 'http://beeossdev.egtest.cn:7777',
-            changeOrigin: true
-            /*pathRewrite: {
+      // http://localhost:8888/api/index.php/xxx 转发到 http://beeossdev.egtest.cn:7777/api/index.php/xxx 跨域
+      '/api/index.php/*': {
+        target: 'http://beeossdev.egtest.cn:7777',
+        changeOrigin: true
+        /* pathRewrite: {
             '^/api': ''
-            }*/
-        },
-        '/api.php': {
-            target: 'http://iot-dev-upgrade-center.egtest.cn:7777',
-            changeOrigin: true
-            /*pathRewrite: {
+            } */
+      },
+      '/api.php': {
+        target: 'http://iot-dev-upgrade-center.egtest.cn:7777',
+        changeOrigin: true
+        /* pathRewrite: {
                 '^/api': ''
-            }*/
-        }
+            } */
+      }
     },
     historyApiFallback: {
       index: url.parse(options.dev ? '/assets/' : publicPath).pathname
