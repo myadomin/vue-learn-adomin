@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const url = require('url')
 const WebpackNotifierPlugin = require('webpack-notifier')
 const publicPath = ''
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 
 module.exports = (options = {}) => ({
   entry: {
@@ -72,13 +73,23 @@ module.exports = (options = {}) => ({
     // main.js el:#app 挂载在src/index.html的#app
     new HtmlWebpackPlugin({
       template: 'src/index.html'
-    })
+    }),
     // 编译完成动态通知是否有error
     // new WebpackNotifierPlugin({
     //   title: 'Notify',
     //   excludeWarnings: true,
     //   skipFirstNotification: true
     // })
+    // 控制台打印
+    new FriendlyErrorsWebpackPlugin({
+      compilationSuccessInfo: {
+        // package.json cross-env传参
+        messages: [`PROXY_ENV: ${process.env.PROXY_ENV} -- options: ${JSON.stringify(options)}`],
+        notes: ['Some additionnal notes to be displayed unpon successful compilation']
+      },
+      onErrors: function (severity, errors) {
+      }
+    })
   ],
   resolve: {
     // extensions: ['', '.js', '.vue'],

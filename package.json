@@ -43,6 +43,7 @@
     "eslint-plugin-promise": "^4.0.0",
     "eslint-plugin-standard": "^3.1.0",
     "file-loader": "^0.10.1",
+    "friendly-errors-webpack-plugin": "^1.7.0",
     "html-webpack-plugin": "^2.24.1",
     "nprogress": "^0.2.0",
     "rimraf": "^2.5.4",
