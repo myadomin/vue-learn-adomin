@@ -1,6 +1,6 @@
 <template>
     <div class="hello">
-        <h3>{{ msg }}</h3>
+        <h3>{{ msg1 }} --- {{$store.state.counter.message.message1}}</h3>
     </div>
 </template>
 
@@ -8,14 +8,14 @@
 export default {
   name: 'HelloWorld',
   props: {
-    msg: String
+    msg1: String
+  },
+  updated () {
+    console.log('hellowWorld1-updated')
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="stylus">
-.hello
-  color #f3c
-  text-align center
 </style>

@@ -72,13 +72,13 @@ module.exports = (options = {}) => ({
     // main.js el:#app 挂载在src/index.html的#app
     new HtmlWebpackPlugin({
       template: 'src/index.html'
-    }),
-    // 编译完成动态通知是否有error
-    new WebpackNotifierPlugin({
-      title: 'Notify',
-      excludeWarnings: true,
-      skipFirstNotification: true
     })
+    // 编译完成动态通知是否有error
+    // new WebpackNotifierPlugin({
+    //   title: 'Notify',
+    //   excludeWarnings: true,
+    //   skipFirstNotification: true
+    // })
   ],
   resolve: {
     // extensions: ['', '.js', '.vue'],
