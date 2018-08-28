@@ -98,7 +98,9 @@ module.exports = (options = {}) => ({
       },
       onErrors: function (severity, errors) {
       }
-    })
+    }),
+    // 压缩混淆代码 TODO 没有区分开发生产环境
+    new webpack.optimize.UglifyJsPlugin({ minimize: true })
   ],
   resolve: {
     // extensions: ['', '.js', '.vue'],
