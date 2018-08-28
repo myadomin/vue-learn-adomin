@@ -7,6 +7,9 @@ const WebpackNotifierPlugin = require('webpack-notifier')
 const publicPath = ''
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 
+// TODO
+// 1 CommonsChunkPlugin配置 从react-adomin-temp移植过来
+
 module.exports = (options = {}) => ({
   entry: {
     vendor: './src/vendor',
@@ -65,7 +68,13 @@ module.exports = (options = {}) => ({
       }]
   },
   plugins: [
-    // 这里配置错误 参考下面
+    new webpack.DefinePlugin({
+      // vue源码入口会判断process.env.NODE_ENV是development还是production做优化处理
+      // 比如：让UglifyJS 之类的压缩工具完全丢掉仅供开发环境的代码块，以减少最终的文件尺寸
+      // 所以DefinePlugin 定义 process.env.NODE_ENV 让vue源码及业务组件可以读取到process.env.NODE_ENV
+      'process.env.NODE_ENV': options.dev ? JSON.stringify('development') : JSON.stringify('production')
+    }),
+    // 这里配置错误 参考下面 TODO
     // https://www.jb51.net/article/131865.htm
     new webpack.optimize.CommonsChunkPlugin({
       names: ['vendor', 'manifest']
