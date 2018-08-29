@@ -1,36 +1,38 @@
 import { getAllMessages, createMessage } from '@/view/example/chat/api/index'
 import Vue from 'vue'
 
-const setCurrentThread = () => {
-
-}
 export default {
   namespaced: true,
 
   getters: {
-    currentMessages (state) {
-      return state.threads[state.currentThreadID] && state.threads[state.currentThreadID].messages.map(id => {
+    // 通过当前对话得到当前显示的messages
+    currentMessages (state, getters) {
+      return getters.currentThread && getters.currentThread.messages.map(id => {
         return state.messages[id]
+      }).sort((a, b) => {
+        return a.timestamp > b.timestamp
       })
+    },
+    // 当前选中的对话
+    currentThread (state) {
+      return state.threads[state.currentThreadID]
     }
   },
 
   state: {
     currentThreadID: null,
-    allMessages: [],
+    // 对话
     threads: {
-      /*
-      id: {
+      /* id: {
         id,
         name,
         messages: [...ids],
         lastMessage
-      }
-      */
+      } */
     },
+    // 所有消息
     messages: {
-      /*
-      id: {
+      /* id: {
         id,
         threadId,
         threadName,
@@ -38,65 +40,71 @@ export default {
         text,
         timestamp,
         isRead
-      }
-      */
+      } */
     }
   },
 
   mutations: {
-    getAllMessages (state, data) {
-      state.allMessages = data
-    },
-    addAllMessages (state, data) {
-      state.allMessages.push(data)
-    },
-    setMessageAndThreadByAllMessages (state) {
-      // timestamp从小到大排序 保证后续lastMessage是最近一条消息
-      state.allMessages.sort((prev, next) => {
-        return prev.timestamp - next.timestamp
-      })
-      state.threads = {}
-      state.messages = {}
-      state.allMessages.forEach((obj) => {
-        // set state.threads
-        if (!state.threads[obj.threadID]) {
-          Vue.set(state.threads, obj.threadID, {
-            id: obj.threadID,
-            name: obj.threadName,
-            messages: [obj.id],
-            lastMessage: obj.text
-          })
-        } else {
-          state.threads[obj.threadID].messages.push(obj.id)
-          state.threads[obj.threadID].lastMessage = obj
-        }
-        // set state.messages
-        Vue.set(state.messages, obj.id, obj)
+    // 通过后台请求来的originMessages format出 threads messages
+    setMessagesAndThreads (state, originMessages) {
+      originMessages.forEach((message) => {
+        setThreads(state, message)
+        setMessages(state, message)
       })
     },
+    // 输入一条消息后 再次 format出 threads messages
+    addMessage (state, message) {
+      setThreads(state, message)
+      setMessages(state, message)
+    },
+    // 设置当前对话
     setCurrentThread (state, threadID) {
       state.currentThreadID = threadID
     }
   },
 
   actions: {
+    // 请求后台消息
     getAllMessages ({ commit }) {
-      getAllMessages(data => {
-        commit('getAllMessages', data)
-        commit('setMessageAndThreadByAllMessages')
+      getAllMessages(originMessages => {
+        commit('setMessagesAndThreads', originMessages)
         // 刷新进来的对话是最后一条消息所在的对话
-        commit('setCurrentThread', data[data.length - 1].threadID)
+        commit('setCurrentThread', originMessages[originMessages.length - 1].threadID)
       })
     },
-    changeCurrentThread ({ commit }, currentThreadID) {
-      commit('setCurrentThread', currentThreadID)
-    },
+    // 输入一条消息
     addMessage ({ commit, state }, { text }) {
       const thread = state.threads[state.currentThreadID]
       return createMessage({ text, thread }, message => {
-        commit('addAllMessages', message)
-        commit('setMessageAndThreadByAllMessages')
+        commit('addMessage', message)
       })
+    },
+    // 切换对话
+    changeThread ({ commit }, currentThreadID) {
+      commit('setCurrentThread', currentThreadID)
     }
   }
+}
+
+const setThreads = (state, message) => {
+  // set state.threads
+  const thread = state.threads[message.threadID]
+  if (!thread) {
+    Vue.set(state.threads, message.threadID, {
+      id: message.threadID,
+      name: message.threadName,
+      messages: [message.id],
+      lastMessage: message
+    })
+  } else {
+    thread.messages.push(message.id)
+    if (message.timestamp > thread.lastMessage.timestamp) {
+      thread.lastMessage = message
+    }
+  }
+}
+
+const setMessages = (state, message) => {
+  // set state.messages
+  Vue.set(state.messages, message.id, message)
 }

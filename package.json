@@ -45,6 +45,7 @@
     "file-loader": "^0.10.1",
     "friendly-errors-webpack-plugin": "^1.7.0",
     "html-webpack-plugin": "^2.24.1",
+    "moment": "^2.22.2",
     "nprogress": "^0.2.0",
     "rimraf": "^2.5.4",
     "sortablejs": "^1.7.0",
