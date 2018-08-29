@@ -3,10 +3,10 @@ import Home from '@/view/Home.vue'
 import Test from '@/view/Test.vue'
 import DocTest from '@/view/DocTest.vue'
 import Example from '@/view/example/index.vue'
-import Counter from '@/view/example/counter/index.vue'
-import ShoppingCart from '@/view/example/shoppingCart/index.vue'
-import Todomvc from '@/view/example/todomvc/index.vue'
-import Chat from '@/view/example/chat/index.vue'
+import Counter from '@/view/example/counter/Index'
+import ShoppingCart from '@/view/example/shoppingCart/Index'
+import Todomvc from '@/view/example/todomvc/Index'
+import Chat from '@/view/example/chat/Index'
 
 const routes = [
   {

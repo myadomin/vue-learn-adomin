@@ -103,7 +103,7 @@ module.exports = (options = {}) => ({
     new webpack.optimize.UglifyJsPlugin({ minimize: true })
   ],
   resolve: {
-    // extensions: ['', '.js', '.vue'],
+    extensions: ['.js', '.vue'],
     alias: {
       '@': resolve(__dirname, 'src')
     }

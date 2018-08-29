@@ -3,37 +3,45 @@
     <h2>Shopping Cart Example</h2>
     <hr>
     <h3>Products</h3>
-    <ul>
-      <li v-for="product in products" :key="product.id">
-        <span>{{ product.title }} - ${{ product.price }}</span>
-        <button>Add to cart</button>
-      </li>
-    </ul>
+    <Products />
     <hr>
     <h3>Your Cart</h3>
-    <ul>
-      <li v-for="product in products" :key="product.id">
-        <span>{{ product.title }} - ${{ product.price }} * 2</span>
-      </li>
-    </ul>
-    <p>Please add some products to cart.</p>
-    <p>Total: $0.00</p>
-    <button>Checkout</button>
+    <Cart />
   </div>
 </template>
 
 <script>
-import API from './api/shop'
+import { mapState, mapGetters, mapActions } from 'vuex'
+import Products from './Products.vue'
+import Cart from './Cart.vue'
+
 export default {
   data () {
     return {
-      products: []
     }
   },
+  components: {
+    Products,
+    Cart
+  },
+  computed: {
+    ...mapState('example/shopCart', [
+      'products'
+    ]),
+    ...mapGetters('example/shopCart', [
+      'cartProducts',
+      'cartTotalPrice'
+    ])
+  },
   created () {
-    API.getProducts((products) => {
-      this.products = products
-    })
+    this.getProducts()
+  },
+  methods: {
+    ...mapActions('example/shopCart', [
+      'getProducts',
+      'addToCart',
+      'checkout'
+    ])
   }
 }
 </script>
@@ -41,8 +49,5 @@ export default {
 <style scoped>
 hr {
   margin: 20px 0
-}
-li {
-  margin: 10px 0
 }
 </style>
