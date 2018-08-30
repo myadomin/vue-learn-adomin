@@ -25,23 +25,10 @@ export default {
     Cart
   },
   computed: {
-    ...mapState('example/shopCart', [
-      'products'
-    ]),
-    ...mapGetters('example/shopCart', [
-      'cartProducts',
-      'cartTotalPrice'
-    ])
   },
   created () {
-    this.getProducts()
   },
   methods: {
-    ...mapActions('example/shopCart', [
-      'getProducts',
-      'addToCart',
-      'checkout'
-    ])
   }
 }
 </script>

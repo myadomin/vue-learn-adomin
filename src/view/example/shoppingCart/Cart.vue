@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions, mapState } from 'vuex'
 export default {
   data () {
     return {
@@ -20,9 +20,9 @@ export default {
   },
   computed: {
     ...mapGetters('example/shopCart', [
-      'cartProducts',
       'cartTotalPrice'
-    ])
+    ]),
+    ...mapState('example/shopCart', ['cartProducts'])
   },
   methods: {
     ...mapActions('example/shopCart', [
