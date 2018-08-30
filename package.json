@@ -35,6 +35,7 @@
     "css-loader": "^0.27.0",
     "date-fns": "^1.29.0",
     "eslint": "^5.4.0",
+    "todomvc-app-css": "^2.1.0",
     "eslint-config-standard": "^11.0.0",
     "eslint-loader": "^2.1.0",
     "eslint-plugin-html": "^4.0.5",
