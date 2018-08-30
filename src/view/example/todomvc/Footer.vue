@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer">
+  <footer class="footer" v-show="todoList.length">
     <span class="todo-count"><strong>{{ todoItemsLeft }}</strong> items left </span> 
     <ul class="filters">
       <li v-for="filter in filters" :key="filter">
@@ -25,7 +25,7 @@ export default {
     }
   },
   computed: {
-    ...mapState('example/todomvc', ['currentFilter']),
+    ...mapState('example/todomvc', ['currentFilter', 'todoList']),
     ...mapGetters('example/todomvc', ['todoItemsLeft'])
   },
   methods: {

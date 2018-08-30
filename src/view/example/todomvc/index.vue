@@ -19,10 +19,6 @@ import AddTodo from './AddTodo'
 import TodoList from './TodoList'
 import Footer from './Footer'
 
-window.addEventListener('hashchange', () => {
-  console.log(window.location.hash)
-})
-
 export default {
   data () {
     return {
@@ -33,7 +29,27 @@ export default {
     TodoList,
     Footer
   },
+  watch: {
+    todoList: {
+      handler (val) {
+        this.setLocalStroage()
+      },
+      deep: true
+    },
+    currentFilter (val) {
+      this.setLocalStroage()
+    }
+  },
   computed: {
+    ...mapState('example/todomvc', ['currentFilter', 'todoList'])
+  },
+  methods: {
+    setLocalStroage () {
+      window.localStorage.setItem('todomvc', JSON.stringify({
+        todoList: this.todoList,
+        currentFilter: this.currentFilter
+      }))
+    }
   }
 }
 </script>

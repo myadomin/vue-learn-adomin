@@ -1,8 +1,8 @@
 <template>
   <section class="main">
     <!-- v-model="isAllCompleted" 拆分成:checked="isAllCompleted" @click="toggleAll"  -->
-    <input id="toggle-all" type="checkbox" class="toggle-all" :checked="isAllCompleted" /> 
-    <label for="toggle-all" @click="toggleAll"></label> 
+    <input id="toggle-all" type="checkbox" class="toggle-all" /> 
+    <label for="toggle-all" @click="toggleAll" :checked="isAllCompleted" v-show="todoList.length"></label> 
     <ul class="todo-list">
       <TodoItem v-for="todo in filterTodoList" :key="todo.id" :todo="todo" />  
     </ul>
@@ -23,6 +23,7 @@ export default {
     TodoItem
   },
   computed: {
+    ...mapState('example/todomvc', ['todoList']),
     ...mapGetters('example/todomvc', ['isAllCompleted', 'filterTodoList'])
   },
   methods: {

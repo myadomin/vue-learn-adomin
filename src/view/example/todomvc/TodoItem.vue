@@ -3,8 +3,8 @@
     @dblclick="isEditing = true"
     :class="{'completed': todo.isCompleted, 'editing': isEditing}">
     <div class="view">
-      <input type="checkbox" class="toggle" v-model="todo.isCompleted" /> 
-      <label>{{ todo.text }}</label> 
+      <input type="checkbox" class="toggle" @change="toggleTodo(todo)" :checked="todo.isCompleted" /> 
+      <label @click="toggleTodo(todo)">{{ todo.text }}</label> 
       <button class="destroy" @click="delTodo(todo)"></button>
     </div> 
     <input class="edit" 
@@ -45,7 +45,7 @@ export default {
   computed: {
   },
   methods: {
-    ...mapActions('example/todomvc', ['delTodo', 'editTodo']),
+    ...mapActions('example/todomvc', ['delTodo', 'toggleTodo', 'editTodo']),
     doneEdit (ev, todo) {
       const editDoneValue = ev.target.value.trim()
       if (editDoneValue) {

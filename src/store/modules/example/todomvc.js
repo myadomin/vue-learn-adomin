@@ -1,5 +1,3 @@
-let id = 0
-
 export default {
   namespaced: true,
 
@@ -26,21 +24,19 @@ export default {
   },
 
   state: {
-    todoList: [
-      // {
-      //   id: 1,
-      //   text: 121,
-      //   isCompleted: false,
-      // }
-    ],
-    currentFilter: 'all'
+    // todoList: [{
+    //   id: 1,
+    //   text: 121,
+    //   isCompleted: false
+    // }],
+    todoList: JSON.parse(window.localStorage.getItem('todomvc')) ? JSON.parse(window.localStorage.getItem('todomvc')).todoList : [],
+    currentFilter: JSON.parse(window.localStorage.getItem('todomvc')) ? JSON.parse(window.localStorage.getItem('todomvc')).currentFilter : 'all'
   },
 
   mutations: {
     addTodo (state, text) {
-      id++
       state.todoList.push({
-        id,
+        id: Date.now(),
         text,
         isCompleted: false
       })
@@ -49,6 +45,10 @@ export default {
       state.todoList.forEach(todo => {
         todo.isCompleted = !isAllCompleted
       })
+    },
+    toggleTodo (state, todo) {
+      const currentTodo = state.todoList.find(item => item.id === todo.id)
+      currentTodo.isCompleted = !currentTodo.isCompleted
     },
     delTodo (state, todo) {
       state.todoList = state.todoList.filter(item => item.id !== todo.id)
@@ -71,6 +71,9 @@ export default {
     },
     toggleAll ({ commit, getters }) {
       commit('toggleAll', getters.isAllCompleted)
+    },
+    toggleTodo ({ commit }, todo) {
+      commit('toggleTodo', todo)
     },
     delTodo ({ commit }, todo) {
       commit('delTodo', todo)
