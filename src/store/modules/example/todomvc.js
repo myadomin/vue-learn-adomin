@@ -7,13 +7,21 @@ export default {
     // 全部完成 isCompletedAll true
     // 有一个没完成 isCompletedAll false
     isAllCompleted (state) {
-      let isAllCompleted = true
-      state.todoList.forEach(todo => {
-        if (!todo.isCompleted) {
-          isAllCompleted = false
-        }
-      })
-      return isAllCompleted
+      return state.todoList.every(todo => todo.isCompleted)
+    },
+    filterTodoList (state) {
+      switch (state.currentFilter) {
+        case 'all':
+          return state.todoList
+        case 'active':
+          return state.todoList.filter(todo => !todo.isCompleted)
+        case 'completed':
+          return state.todoList.filter(todo => todo.isCompleted)
+      }
+    },
+    // 还剩下多少个未完成todo
+    todoItemsLeft (state) {
+      return state.todoList.filter(todo => !todo.isCompleted).length
     }
   },
 
@@ -23,9 +31,9 @@ export default {
       //   id: 1,
       //   text: 121,
       //   isCompleted: false,
-      //   isEditing: false
       // }
-    ]
+    ],
+    currentFilter: 'all'
   },
 
   mutations: {
@@ -34,8 +42,7 @@ export default {
       state.todoList.push({
         id,
         text,
-        isCompleted: false,
-        isEditing: false
+        isCompleted: false
       })
     },
     toggleAll (state, isAllCompleted) {
@@ -49,7 +56,12 @@ export default {
     editTodo (state, {todo, editDoneValue}) {
       const currentTodo = state.todoList.find(item => item.id === todo.id)
       currentTodo.text = editDoneValue
-      currentTodo.isEditing = false
+    },
+    filterTodos (state, filter) {
+      state.currentFilter = filter
+    },
+    clearCompleted (state) {
+      state.todoList = state.todoList.filter(todo => !todo.isCompleted)
     }
   },
 
@@ -65,6 +77,12 @@ export default {
     },
     editTodo ({ commit }, payload) {
       commit('editTodo', payload)
+    },
+    filterTodos ({ commit }, filter) {
+      commit('filterTodos', filter)
+    },
+    clearCompleted ({ commit }) {
+      commit('clearCompleted')
     }
   }
 }

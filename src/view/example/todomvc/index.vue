@@ -1,7 +1,7 @@
 <style src="todomvc-app-css/index.css"></style>
 <style scoped>
 .todoapp {
-  margin: 300px 0 0 0;
+  margin: 260px 0 0 0;
 }
 </style>
 
@@ -18,6 +18,10 @@ import { mapState } from 'vuex'
 import AddTodo from './AddTodo'
 import TodoList from './TodoList'
 import Footer from './Footer'
+
+window.addEventListener('hashchange', () => {
+  console.log(window.location.hash)
+})
 
 export default {
   data () {
