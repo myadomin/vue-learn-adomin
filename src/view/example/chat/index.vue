@@ -30,10 +30,16 @@ export default {
     Thread
   },
   created () {
-    this.getAllMessages()
+    // 刷新页面state才会重置
+    // 不刷新页面 只是通过前进后退或者输url进入页面 state不重置
+    // 所以如果state.threads之前已set过就不再getAllMessages
+    if (JSON.stringify(this.threads) === '{}') {
+      this.getAllMessages()
+    }
   },
   computed: {
-    ...mapGetters('example/chat', ['currentThread'])
+    ...mapGetters('example/chat', ['currentThread']),
+    ...mapState('example/chat', ['threads'])
   },
   methods: {
     ...mapActions('example/chat', [

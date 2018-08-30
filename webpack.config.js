@@ -21,8 +21,7 @@ module.exports = (options = {}) => ({
     // publicPath如何理解？
     path: resolve(__dirname, 'dist'),
     filename: options.dev ? '[name].js' : '[name].js?[chunkhash]',
-    chunkFilename: '[id].js?[chunkhash]',
-    publicPath: options.dev ? '/assets/' : publicPath
+    chunkFilename: '[id].js?[chunkhash]'
   },
   module: {
     rules: [
@@ -130,9 +129,6 @@ module.exports = (options = {}) => ({
                 '^/api': ''
             } */
       }
-    },
-    historyApiFallback: {
-      index: url.parse(options.dev ? '/assets/' : publicPath).pathname
     }
   },
   devtool: options.dev ? '#eval-source-map' : '#source-map'

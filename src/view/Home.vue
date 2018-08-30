@@ -7,6 +7,15 @@
         <el-button type="primary" @click="dispatch">dispatch</el-button>
         <span>{{this.number}}</span>
     </div>
+    <div class="examples" style="margin-top: 50px">
+      <h2>Vuex Examples</h2>
+      <ul>
+        <li><router-link to="/counter">counter</router-link></li>
+        <li><router-link to="/shopping-cart">shoppingCart</router-link></li>
+        <li><router-link to="/todomvc">todomvc</router-link></li>
+        <li><router-link to="/chat">chat</router-link></li>
+      </ul>
+    </div>
   </div>
 </template>
 

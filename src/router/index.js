@@ -2,7 +2,6 @@ import VueRouter from 'vue-router'
 import Home from '@/view/Home.vue'
 import Test from '@/view/Test.vue'
 import DocTest from '@/view/DocTest.vue'
-import Example from '@/view/example/index.vue'
 import Counter from '@/view/example/counter/Index'
 import ShoppingCart from '@/view/example/shoppingCart/Index'
 import Todomvc from '@/view/example/todomvc/Index'
@@ -23,11 +22,6 @@ const routes = [
     path: '/doctest',
     name: 'doctest',
     component: DocTest
-  },
-  {
-    path: '/example',
-    name: 'example',
-    component: Example
   },
   {
     path: '/counter',
