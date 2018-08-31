@@ -1,8 +1,15 @@
 <style src="todomvc-app-css/index.css"></style>
 <style scoped>
 .todoapp {
-  margin: 260px 0 0 0;
+  max-width: 550px;
+  margin: 0 auto;
+  margin-top: 260px;
 }
+</style>
+<style>
+  body {
+    max-width: 100%
+  }
 </style>
 
 <template>

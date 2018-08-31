@@ -1,7 +1,6 @@
 <template>
   <div>
     <div class="home">
-        <img src="../assets/logo.png">
         <el-button type="primary" @click="getProducts">getProducts</el-button>
         <el-button type="primary" @click="getProductsBuy">getProductsBuy</el-button>
         <el-button type="primary" @click="dispatch">dispatch</el-button>
@@ -55,9 +54,5 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.home
-    img
-        display block
-        margin: 200px auto 0
+// .home
 </style>
-
