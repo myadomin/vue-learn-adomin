@@ -29,3 +29,9 @@ export default {
   }
 }
 </script>
+
+<style lang="stylus" scoped>
+h1
+  top: -100px
+</style>
+
