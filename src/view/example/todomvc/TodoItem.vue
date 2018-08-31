@@ -47,9 +47,9 @@ export default {
   methods: {
     ...mapActions('example/todomvc', ['delTodo', 'toggleTodo', 'editTodo']),
     doneEdit (ev, todo) {
-      const editDoneValue = ev.target.value.trim()
-      if (editDoneValue) {
-        this.editTodo({ todo, editDoneValue })
+      const editDoneText = ev.target.value.trim()
+      if (editDoneText) {
+        this.editTodo({ todo, text: editDoneText })
         this.isEditing = false
       } else {
         this.delTodo(todo)

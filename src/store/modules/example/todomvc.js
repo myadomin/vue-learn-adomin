@@ -1,3 +1,7 @@
+// Index.vue里watch了state.todoList state.currentFilter 两者有任何变化都会存入localStorage todomvc
+// 在这里拿出localStorage todomvc
+const todomvc = JSON.parse(window.localStorage.getItem('todomvc'))
+
 export default {
   namespaced: true,
 
@@ -7,6 +11,7 @@ export default {
     isAllCompleted (state) {
       return state.todoList.every(todo => todo.isCompleted)
     },
+    // 根据currentFilter 得到filterTodoList
     filterTodoList (state) {
       switch (state.currentFilter) {
         case 'all':
@@ -29,8 +34,8 @@ export default {
     //   text: 121,
     //   isCompleted: false
     // }],
-    todoList: JSON.parse(window.localStorage.getItem('todomvc')) ? JSON.parse(window.localStorage.getItem('todomvc')).todoList : [],
-    currentFilter: JSON.parse(window.localStorage.getItem('todomvc')) ? JSON.parse(window.localStorage.getItem('todomvc')).currentFilter : 'all'
+    todoList: todomvc ? todomvc.todoList : [],
+    currentFilter: todomvc ? todomvc.currentFilter : 'all'
   },
 
   mutations: {
@@ -41,27 +46,15 @@ export default {
         isCompleted: false
       })
     },
-    toggleAll (state, isAllCompleted) {
-      state.todoList.forEach(todo => {
-        todo.isCompleted = !isAllCompleted
-      })
-    },
-    toggleTodo (state, todo) {
-      const currentTodo = state.todoList.find(item => item.id === todo.id)
-      currentTodo.isCompleted = !currentTodo.isCompleted
-    },
     delTodo (state, todo) {
       state.todoList = state.todoList.filter(item => item.id !== todo.id)
     },
-    editTodo (state, {todo, editDoneValue}) {
-      const currentTodo = state.todoList.find(item => item.id === todo.id)
-      currentTodo.text = editDoneValue
+    editTodo (state, {todo, text = todo.text, isCompleted = todo.isCompleted}) {
+      todo.text = text
+      todo.isCompleted = isCompleted
     },
-    filterTodos (state, filter) {
+    setCurrentFilter (state, filter) {
       state.currentFilter = filter
-    },
-    clearCompleted (state) {
-      state.todoList = state.todoList.filter(todo => !todo.isCompleted)
     }
   },
 
@@ -69,23 +62,28 @@ export default {
     addTodo ({ commit }, text) {
       commit('addTodo', text)
     },
-    toggleAll ({ commit, getters }) {
-      commit('toggleAll', getters.isAllCompleted)
-    },
-    toggleTodo ({ commit }, todo) {
-      commit('toggleTodo', todo)
-    },
     delTodo ({ commit }, todo) {
       commit('delTodo', todo)
     },
-    editTodo ({ commit }, payload) {
-      commit('editTodo', payload)
+    clearCompleted ({ commit, state }) {
+      state.todoList.filter(item => item.isCompleted).forEach(todo => {
+        commit('delTodo', todo)
+      })
+    },
+    editTodo ({ commit }, {todo, text}) {
+      commit('editTodo', { todo, text })
+    },
+    toggleTodo ({ commit }, todo) {
+      commit('editTodo', { todo, isCompleted: !todo.isCompleted })
+    },
+    toggleAll ({ commit, state, getters }) {
+      const isAllCompleted = getters.isAllCompleted
+      state.todoList.forEach(todo => {
+        commit('editTodo', { todo, isCompleted: !isAllCompleted })
+      })
     },
     filterTodos ({ commit }, filter) {
-      commit('filterTodos', filter)
-    },
-    clearCompleted ({ commit }) {
-      commit('clearCompleted')
+      commit('setCurrentFilter', filter)
     }
   }
 }
