@@ -29,6 +29,8 @@ import { mapState, mapActions, mapGetters } from 'vuex'
 export default {
   data () {
     return {
+      // 独立作用域 每一个TodoItem独享一个isEditing
+      // 如果不封装TodoItem组件 那就需要todoList里的每个对象加一个isEditing的key
       isEditing: false
     }
   },
