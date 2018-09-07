@@ -47,7 +47,7 @@ export default {
       })
     },
     dispatch () {
-      this.$store.dispatch('counter/increment', {num: 1})
+      this.$store.dispatch('counter/increment', { num: 1 })
     }
   }
 }

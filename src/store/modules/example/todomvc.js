@@ -49,7 +49,7 @@ export default {
     delTodo (state, todo) {
       state.todoList = state.todoList.filter(item => item.id !== todo.id)
     },
-    editTodo (state, {todo, text = todo.text, isCompleted = todo.isCompleted}) {
+    editTodo (state, { todo, text = todo.text, isCompleted = todo.isCompleted }) {
       todo.text = text
       todo.isCompleted = isCompleted
     },
@@ -70,7 +70,7 @@ export default {
         commit('delTodo', todo)
       })
     },
-    editTodo ({ commit }, {todo, text}) {
+    editTodo ({ commit }, { todo, text }) {
       commit('editTodo', { todo, text })
     },
     toggleTodo ({ commit }, todo) {
