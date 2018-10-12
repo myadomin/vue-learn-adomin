@@ -1,5 +1,2 @@
 # vue-temp-adomin
-vue-temp-adomin
-
-// .babelrc
-// 引用babel-preset-vue-app 否则npm run build报错
+自己搭建的一套vue+webpack+vuex+vue-router+axios+elementUI的开发架子
