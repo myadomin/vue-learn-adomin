@@ -1,11 +1,11 @@
 import VueRouter from 'vue-router'
-import Home from '@/view/Home.vue'
-import Test from '@/view/Test.vue'
-import DocTest from '@/view/DocTest.vue'
-import Counter from '@/view/example/counter/Index'
-import ShoppingCart from '@/view/example/shoppingCart/Index'
-import Todomvc from '@/view/example/todomvc/Index'
-import Chat from '@/view/example/chat/Index'
+const Home = () => import('@/view/Home.vue')
+const Test = () => import('@/view/Test.vue')
+const DocTest = () => import('@/view/DocTest.vue')
+const Counter = () => import('@/view/example/counter/Index')
+const ShoppingCart = () => import('@/view/example/shoppingCart/Index')
+const Todomvc = () => import('@/view/example/todomvc/Index')
+const Chat = () => import('@/view/example/chat/Index')
 
 const routes = [
   {

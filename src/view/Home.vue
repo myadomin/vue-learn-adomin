@@ -13,6 +13,8 @@
         <li><router-link to="/shopping-cart">shoppingCart</router-link></li>
         <li><router-link to="/chat">chat</router-link></li>
         <li><router-link to="/todomvc" target="_blank">todomvc</router-link></li>
+        <li><router-link to="/test">test</router-link></li>
+        <li><router-link to="/docTest">docTest</router-link></li>
       </ul>
     </div>
   </div>
