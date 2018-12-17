@@ -19,6 +19,11 @@
   "engines": {
     "node": ">=6"
   },
+  "babel": {
+    "presets": [
+      "./.babelrc.js"
+    ]
+  },
   "devDependencies": {
     "autoprefixer": "~6.6.0",
     "babel-core": "~6.24.1",
