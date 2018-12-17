@@ -7,7 +7,7 @@ import axios from 'axios'
 // 打开 mockjs拦截请求，返回mock数据
 // 关闭 请求服务器数据
 import mock from './mock'
-Vue.prototype.$moment = require('moment')
+Vue.prototype.$dayjs = require('dayjs')
 
 Vue.use(VueRouter)
 Vue.use(Vuex)

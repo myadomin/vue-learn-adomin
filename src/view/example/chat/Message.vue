@@ -3,7 +3,7 @@
     <li v-for="message in currentMessages" :key="message.id" class="message-list-item">
       <h5 class="message-author-name">{{ message.authorName }}</h5> 
       <div class="message-time">
-      {{ $moment(message.timestamp).format('HH:mm:ss') }} 
+      {{ $dayjs(message.timestamp).format('HH:mm:ss') }} 
       </div> 
       <div class="message-text">
       {{ message.text }}
