@@ -4,8 +4,7 @@ import Vuex from 'vuex'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import axios from 'axios'
-// 打开 mockjs拦截请求，返回mock数据
-// 关闭 请求服务器数据
+// mockjs拦截请求
 import mock from './mock'
 Vue.prototype.$dayjs = require('dayjs')
 

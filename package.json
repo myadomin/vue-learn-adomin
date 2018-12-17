@@ -1,16 +1,16 @@
 {
   "name": "temp",
   "description": "A Vue.js project",
-  "author": "adomin",
+  "author": "luominmin",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --inline --hot --env.dev",
     "start": "npm run dev",
-    "build": "rimraf dist && webpack -p --progress --hide-modules"
+    "dev": "cross-env NODE_ENV=dev webpack-dev-server --hot --config ./scripts/webpack.dev.config.js",
+    "build": "rimraf dist && webpack --config ./scripts/webpack.prod.config.js"
   },
   "dependencies": {
     "axios": "~0.17.0",
-    "element-ui": "~2.4.1",
+    "element-ui": "~2.4.11",
     "mockjs": "~1.0.1-beta3",
     "vue": "~2.5.2",
     "vue-router": "~3.0.1",
@@ -32,6 +32,7 @@
     "babel-plugin-transform-runtime": "6.x",
     "babel-polyfill": "^6.26.0",
     "babel-preset-vue-app": "~1.2.0",
+    "cross-env": "^5.2.0",
     "css-loader": "~0.27.0",
     "date-fns": "~1.29.0",
     "dayjs": "~1.7.8",
@@ -56,7 +57,9 @@
     "vue-style-loader": "~2.0.3",
     "vue-template-compiler": "~2.5.2",
     "webpack": "~2.4.1",
+    "webpack-bundle-analyzer": "^3.0.3",
     "webpack-dev-server": "~2.4.2",
+    "webpack-merge": "^4.1.5",
     "webpack-notifier": "~1.5.0"
   }
 }
