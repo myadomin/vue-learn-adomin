@@ -1,60 +1,53 @@
 <template>
   <div>
-    <div class="home">
-        <el-button type="primary" @click="getProducts">getProducts</el-button>
-        <el-button type="primary" @click="getProductsBuy">getProductsBuy</el-button>
-        <el-button type="primary" @click="dispatch">dispatch</el-button>
-        <span>{{this.number}}</span>
-    </div>
-    <div class="examples" style="margin-top: 50px">
-      <h2>Vuex Examples</h2>
-      <ul>
-        <li><router-link to="/counter">counter</router-link></li>
-        <li><router-link to="/shopping-cart">shoppingCart</router-link></li>
-        <li><router-link to="/chat">chat</router-link></li>
-        <li><router-link to="/todomvc" target="_blank">todomvc</router-link></li>
-        <li><router-link to="/test">test</router-link></li>
-        <li><router-link to="/docTest">docTest</router-link></li>
-      </ul>
-    </div>
+    <el-container>
+      <el-aside>
+        <Aside />
+      </el-aside>
+      <el-container>
+        <el-header>
+          <Header />
+        </el-header>
+        <el-main>
+          <router-view></router-view>
+        </el-main>
+      </el-container>
+    </el-container>
   </div>
 </template>
 
 <script>
-import API from '@/api/index.js'
-import { mapState } from 'vuex'
-
+import Header from '@/view/base/Header.vue'
+import Aside from '@/view/base/Aside.vue'
 export default {
-  name: 'home',
   components: {
+    Aside,
+    Header
   },
   data () {
     return {
-    }
-  },
-  computed: {
-    ...mapState('counter', [
-      'number'
-    ])
-  },
-  methods: {
-    getProducts () {
-      API.getProducts().then((res) => {
-        console.log(res, 11)
-      })
-    },
-    getProductsBuy () {
-      API.getProductsBuy().then((res) => {
-        console.log(res, 22)
-      })
-    },
-    dispatch () {
-      this.$store.dispatch('counter/increment', { num: 1 })
     }
   }
 }
 </script>
 
-<style lang="stylus" scoped>
-// .home
+<style lang="stylus">
+.el-container
+  background-color #f0f2f5
+.el-aside
+  width 210px !important
+  min-height: 100vh
+  box-shadow: 4px 0 6px rgba(0,21,41,.35)
+  position: relative
+  z-index: 10;
+  background #001529
+.el-header
+  height: 60px
+  padding: 0
+  background: #fff
+  box-shadow: 0 3px 4px rgba(0,21,41,.08)
+  position: relative
+  padding: 0 20px
+.el-main
+  padding 20px
 </style>

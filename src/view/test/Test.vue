@@ -1,6 +1,6 @@
 <template>
   <div>
-   doctest
+    test
   </div>
 </template>
 
@@ -10,6 +10,11 @@ export default {
   },
   data () {
     return {
+      msg: {
+        msg1: '11',
+        msg2: '22',
+        msg3: '33'
+      }
     }
   },
   computed: {

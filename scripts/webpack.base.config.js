@@ -17,7 +17,8 @@ const webpackConfigBase = {
   resolve: {
     extensions: ['.js', '.vue'],
     alias: {
-      '@': resolve('../src')
+      '@': resolve('../src'),
+      '@img': resolve('../src/assets')
     }
   },
   module: {
