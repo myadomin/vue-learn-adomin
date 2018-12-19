@@ -5,7 +5,7 @@
     </div>
     <div class="menu">
       <el-menu
-        default-active=""
+        :default-active="$route.path"
         class="el-menu-vertical-demo"
         background-color="#001529"
         text-color="#ddd"
@@ -15,18 +15,21 @@
             <i class="el-icon-location"></i>
             <span>导航一</span>
           </template>
-          <el-menu-item index="1-1"><router-link to="/mock">mock</router-link></el-menu-item>
-          <el-menu-item index="1-2"><router-link to="/test">test</router-link></el-menu-item>
+          <el-menu-item index="/" style="display:none">
+            welcome
+          </el-menu-item>
+          <el-menu-item index="/mock"><router-link to="/mock">mock</router-link></el-menu-item>
+          <el-menu-item index="/test"><router-link to="/test">test</router-link></el-menu-item>
         </el-submenu>
         <el-submenu index="2">
           <template slot="title">
             <i class="el-icon-location"></i>
             <span>example</span>
           </template>
-          <el-menu-item index="2-1"><router-link to="/counter">counter</router-link></el-menu-item>
-          <el-menu-item index="2-2"><router-link to="/shopping-cart">shopping-cart</router-link></el-menu-item>
-          <el-menu-item index="2-3"><router-link to="/chat">chat</router-link></el-menu-item>
-          <el-menu-item index="2-4"><router-link to="/todomvc" target="_blank">todomvc</router-link></el-menu-item>
+          <el-menu-item index="/counter"><router-link to="/counter">counter</router-link></el-menu-item>
+          <el-menu-item index="/shopping-cart"><router-link to="/shopping-cart">shopping-cart</router-link></el-menu-item>
+          <el-menu-item index="/chat"><router-link to="/chat">chat</router-link></el-menu-item>
+          <el-menu-item index="/todomvc"><router-link to="/todomvc" target="_blank">todomvc</router-link></el-menu-item>
         </el-submenu>
       </el-menu>
     </div>
