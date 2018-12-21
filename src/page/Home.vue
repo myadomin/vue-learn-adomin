@@ -17,8 +17,8 @@
 </template>
 
 <script>
-import Header from '@/view/base/Header.vue'
-import Aside from '@/view/base/Aside.vue'
+import Header from '@/components/Header.vue'
+import Aside from '@/components/Aside.vue'
 export default {
   components: {
     Aside,

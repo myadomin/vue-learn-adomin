@@ -1,13 +1,13 @@
 import VueRouter from 'vue-router'
-const Home = () => import('@/view/Home')
-const Login = () => import('@/view/Login')
-const Welcome = () => import('@/view/welcome/Welcome')
-const Mock = () => import('@/view/mock/Mock')
-const Test = () => import('@/view/test/Test')
-const Counter = () => import('@/view/example/counter/Index')
-const ShoppingCart = () => import('@/view/example/shoppingCart/Index')
-const Todomvc = () => import('@/view/example/todomvc/Index')
-const Chat = () => import('@/view/example/chat/Index')
+const Home = () => import('@/page/Home')
+const Login = () => import('@/page/Login')
+const Welcome = () => import('@/page/welcome/Welcome')
+const Mock = () => import('@/page/mock/Mock')
+const Test = () => import('@/page/test/Test')
+const Counter = () => import('@/page/example/counter/Index')
+const ShoppingCart = () => import('@/page/example/shoppingCart/Index')
+const Todomvc = () => import('@/page/example/todomvc/Index')
+const Chat = () => import('@/page/example/chat/Index')
 
 const routes = [
   {

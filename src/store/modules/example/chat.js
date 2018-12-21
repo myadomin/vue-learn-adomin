@@ -1,4 +1,4 @@
-import { getAllMessages, createMessage } from '@/view/example/chat/api/index'
+import { getAllMessages, createMessage } from '@/page/example/chat/api/index'
 import Vue from 'vue'
 
 export default {
