@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm run dev",
     "dev": "cross-env NODE_ENV=dev webpack-dev-server --hot --config ./scripts/webpack.dev.config.js",
-    "build": "rimraf dist && webpack --config ./scripts/webpack.prod.config.js",
+    "build": "rimraf dist && webpack --progress --config ./scripts/webpack.prod.config.js",
     "server-test": "node ./src/server/test.js",
     "server-prod": "node ./src/server/prod.js"
   },
