@@ -10,9 +10,5 @@ export default [
   {
     path: URL.product_all,
     data: products
-  },
-  {
-    path: URL.product_add,
-    data: []
   }
 ]

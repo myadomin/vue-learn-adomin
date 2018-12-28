@@ -1,11 +1,9 @@
-// const axios = require('axios')
 import axios from 'axios'
 
+// 允许跨域传输cookie
+axios.defaults.withCredentials = true
 // 添加请求拦截器
 axios.interceptors.request.use(config => {
-  config.data = {
-    token: 'sdfsdf'
-  }
   return config
 }, error => {
   return Promise.reject(error)

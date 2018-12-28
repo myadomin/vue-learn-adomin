@@ -42,13 +42,10 @@ const webpackConfigDev = {
     // necessary for FriendlyErrorsPlugin
     quiet: true,
     proxy: {
-      // '/api/index.php/*': {
-      //     target: 'http://beeossdev.egtest.cn:7777',
-      //     changeOrigin: true
-      //     pathRewrite: {
-      //       '^/api': ''
-      //     }
-      // }
+      '/api/*': {
+        target: 'http://localhost:3001/',
+        changeOrigin: true
+      }
     }
   }
 }
