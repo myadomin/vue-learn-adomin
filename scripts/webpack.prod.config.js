@@ -4,8 +4,8 @@ const path = require('path')
 const resolve = (relatedPath) => path.resolve(__dirname, relatedPath)
 const merge = require('webpack-merge')
 const webpackConfigBase = require('./webpack.base.config')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const FileManagerPlugin = require('filemanager-webpack-plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 const webpackConfigProd = {
   output: {
@@ -15,10 +15,6 @@ const webpackConfigProd = {
     publicPath: './'
   },
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production'),
-      IS_DEVELOPMETN: false
-    }),
     // 压缩优化代码
     new webpack.optimize.UglifyJsPlugin({ minimize: true }),
     // 打出zip包
@@ -38,4 +34,20 @@ const webpackConfigProd = {
   devtool: 'source-map'
 }
 
-module.exports = merge(webpackConfigBase, webpackConfigProd)
+module.exports = (env) => {
+  // npm run build-test
+  if (env === 'test') {
+    webpackConfigProd.plugins.push(new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production'),
+      // 定义后给urls.js用
+      'SERVER': JSON.stringify('test')
+    }))
+  } else {
+    // npm run build-prod
+    webpackConfigProd.plugins.push(new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production'),
+      'SERVER': JSON.stringify('prod')
+    }))
+  }
+  return merge(webpackConfigBase, webpackConfigProd)
+}

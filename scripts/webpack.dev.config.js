@@ -15,17 +15,17 @@ const webpackConfigDev = {
   plugins: [
     new webpack.DefinePlugin({
       // vue源码入口会判断process.env.NODE_ENV是development还是production做优化处理
-      // 定义process.env.NODE_ENV让vue源码读取
-      // 这里的process.env.NODE_ENV是给vue源码及业务组件读取的
+      // 定义process.env.NODE_ENV让vue源码读取 这里的process.env.NODE_ENV是给vue源码及业务组件读取的
       // 注意区别npm script cross-env NODE_ENV=dev 这个只能在webpack配置中读取到
       'process.env.NODE_ENV': JSON.stringify('development'),
-      IS_DEVELOPMETN: true
+      // 定义后给urls.js用
+      'SERVER': JSON.stringify('localhost')
     }),
     // 控制台打印
     new FriendlyErrorsWebpackPlugin({
       compilationSuccessInfo: {
         // 测试传的参数PROXY_ENV
-        messages: [`NODE_ENV: ${process.env.NODE_ENV}`],
+        messages: [`PROXY_ENV: ${process.env.PROXY_ENV}`],
         notes: ['Some additionnal notes to be displayed unpon successful compilation']
       },
       onErrors: function (severity, errors) {

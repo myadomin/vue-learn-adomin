@@ -28,12 +28,12 @@ export default {
   methods: {
     getProducts () {
       this.$http.post(URL.product_all).then(res => {
-        console.log(res.data, 11)
+        console.log('我是mock的数据', res.data)
       })
     },
     getProductsBuy () {
       this.$http.get(URL.product_buy).then(res => {
-        console.log(res.data, 22)
+        console.log('我是mock的数据', res.data)
       })
     },
     dispatch () {

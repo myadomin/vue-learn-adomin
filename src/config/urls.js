@@ -1,7 +1,12 @@
-const dev = ''
-const test = 'http://localhost:3001'
-const prod = 'http://localhost:3002'
-const ctx = test
+
+const serverDict = {
+  'localhost': '',
+  'test': 'http://localhost:3001',
+  'prod': 'http://localhost:3002'
+}
+/*eslint-disable*/
+const ctx = serverDict[SERVER]
+/*eslint-disable*/
 
 export default {
   product_all: '/product/all',

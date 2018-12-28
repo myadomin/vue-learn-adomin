@@ -33,6 +33,6 @@ app.post('/api/testpost', function (req, res) {
   })
 })
 
-app.listen(3001)
-console.log('open localhost:3001')
-// opn('http://localhost:3001')
+app.listen(3002)
+console.log('open localhost:3002')
+// opn('http://localhost:3002')
