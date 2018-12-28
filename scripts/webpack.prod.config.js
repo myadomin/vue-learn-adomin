@@ -5,6 +5,7 @@ const resolve = (relatedPath) => path.resolve(__dirname, relatedPath)
 const merge = require('webpack-merge')
 const webpackConfigBase = require('./webpack.base.config')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const FileManagerPlugin = require('filemanager-webpack-plugin')
 
 const webpackConfigProd = {
   output: {
@@ -19,7 +20,18 @@ const webpackConfigProd = {
       IS_DEVELOPMETN: false
     }),
     // 压缩优化代码
-    new webpack.optimize.UglifyJsPlugin({ minimize: true })
+    new webpack.optimize.UglifyJsPlugin({ minimize: true }),
+    // 打出zip包
+    new FileManagerPlugin({
+      onEnd: {
+        mkdir: ['./dist-package'],
+        archive: [
+          {
+            source: './dist', destination: './dist-package/dist.zip'
+          }
+        ]
+      }
+    })
     // http://localhost:3011/ 查看每个包大小 优化包大小用
     // new BundleAnalyzerPlugin({ analyzerPort: 3011 })
   ],
