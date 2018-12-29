@@ -8,8 +8,8 @@
     "dev": "cross-env PROXY_ENV=abc webpack-dev-server --hot --config ./scripts/webpack.dev.config.js",
     "build-test": "rimraf dist && webpack --config ./scripts/webpack.prod.config.js --progress --env=test",
     "build-prod": "rimraf dist && webpack --config ./scripts/webpack.prod.config.js --progress --env=prod",
-    "server-test": "node ./src/server/test.js",
-    "server-prod": "node ./src/server/prod.js"
+    "server-test": "node ./server/test.js",
+    "server-prod": "node ./server/prod.js"
   },
   "dependencies": {
     "axios": "~0.17.0",

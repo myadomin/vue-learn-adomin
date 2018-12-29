@@ -33,6 +33,5 @@ app.post('/api/testpost', function (req, res) {
   })
 })
 
-app.listen(3002)
-console.log('open localhost:3002')
+app.listen(3002, () => console.log('listening on port 3002!'))
 // opn('http://localhost:3002')

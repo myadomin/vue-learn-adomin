@@ -12,6 +12,7 @@ app.all('*', function (req, res, next) {
   // 因为启用了Content-Type json传输，所以触发了cors的复杂请求，所以post先发一个options请求校验跨域，然后再发一个post请求
   // 具体见 http://www.cnblogs.com/qunxiadexiaoxiangjiao/p/9446956.html
   res.header('Access-Control-Allow-Headers', 'content-type')
+  res.header('Cache-Control', 'max-age=100000000')
   next()
 })
 
@@ -33,6 +34,5 @@ app.post('/api/testpost', function (req, res) {
   })
 })
 
-app.listen(3001)
-console.log('open localhost:3001')
+app.listen(3001, () => console.log('listening on port 3001!'))
 // opn('http://localhost:3001')
