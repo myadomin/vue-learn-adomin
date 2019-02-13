@@ -2,7 +2,7 @@ export default {
   namespaced: true,
 
   getters: {
-    isEven (state) {
+    isCountEven (state) {
       return (state.count % 2) === 0 ? 'even' : 'odd'
     }
   },
