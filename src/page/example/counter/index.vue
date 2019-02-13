@@ -1,7 +1,7 @@
 <template>
   <div>
     <span> Clicked: {{ count }} times, count is</span>
-    <span> {{ evenOrOdd ? 'odd' : 'even' }}</span>.
+    <span> {{ isEvenOrOdd ? 'odd' : 'even' }}</span>.
     <button @click="increment">+</button>
     <button @click="decrement">-</button>
     <button @click="incrementIfOdd">Increment if odd</button>
@@ -17,7 +17,7 @@ export default {
   },
   computed: {
     ...mapState('example/count', ['count']),
-    ...mapGetters('example/count', ['evenOrOdd'])
+    ...mapGetters('example/count', ['isEvenOrOdd'])
   },
   methods: {
     ...mapActions('example/count', [
