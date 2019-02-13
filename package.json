@@ -1,6 +1,7 @@
 {
-  "name": "temp",
-  "description": "A Vue.js project",
+  "name": "{{projectName}}",
+  "version": "{{projectVersion}}",
+  "description": "{{projectDescription}}",
   "author": "luominmin",
   "private": true,
   "scripts": {
