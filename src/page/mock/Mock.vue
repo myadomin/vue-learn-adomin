@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import URL from '@/config/urls.js'
+import urls from '@/config/urls.js'
 import { mapState } from 'vuex'
 
 export default {
@@ -27,12 +27,12 @@ export default {
   },
   methods: {
     getProducts () {
-      this.$http.post(URL.product_all).then(res => {
+      this.$http.post(urls.product_all).then(res => {
         console.log('我是mock的数据', res.data)
       })
     },
     getProductsBuy () {
-      this.$http.get(URL.product_buy).then(res => {
+      this.$http.get(urls.product_buy).then(res => {
         console.log('我是mock的数据', res.data)
       })
     },
@@ -44,5 +44,4 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-// .home
 </style>
