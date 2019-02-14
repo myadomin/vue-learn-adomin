@@ -1,14 +1,14 @@
 <template>
   <div>
-    <el-container>
-      <el-aside>
+    <el-container class="wrap-container">
+      <el-aside class="wrap-aside">
         <Aside />
       </el-aside>
-      <el-container>
-        <el-header>
+      <el-container class="wrap-container">
+        <el-header class="wrap-header">
           <Header />
         </el-header>
-        <el-main>
+        <el-main class="wrap-main">
           <router-view></router-view>
         </el-main>
       </el-container>
@@ -31,23 +31,27 @@ export default {
 }
 </script>
 
-<style lang="stylus">
-.el-container
-  background-color #f0f2f5
-.el-aside
-  width 210px !important
-  min-height: 100vh
-  box-shadow: 4px 0 6px rgba(0,21,41,.35)
-  position: relative
+<style lang="less" scoped>
+.wrap-container {
+  background-color: #f0f2f5;
+}
+.wrap-aside {
+  width: 210px !important;
+  min-height: 100vh;
+  box-shadow: 4px 0 6px rgba(0,21,41,.35);
+  position: relative;
   z-index: 10;
-  background #001529
-.el-header
-  height: 60px
-  padding: 0
-  background: #fff
-  box-shadow: 0 3px 4px rgba(0,21,41,.08)
-  position: relative
-  padding: 0 20px
-.el-main
-  padding 20px
+  background: #001529;
+}
+.wrap-header {
+  height: 60px;
+  padding: 0;
+  background: #fff;
+  box-shadow: 0 3px 4px rgba(0,21,41,.08);
+  position: relative;
+  padding: 0 20px;
+}
+.wrap-main {
+  padding: 20px;
+}
 </style>

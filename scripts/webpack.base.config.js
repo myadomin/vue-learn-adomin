@@ -48,8 +48,8 @@ const webpackConfigBase = {
         use: ['style-loader', 'css-loader']
       },
       {
-        test: /\.styl$/,
-        use: ['style-loader', 'css-loader', 'stylus-loader']
+        test: /\.less$/,
+        use: ['style-loader', 'css-loader', 'less-loader']
       },
       {
         test: /\.(png|jpg|jpeg|gif|eot|ttf|woff|woff2|svg|svgz)(\?.+)?$/,

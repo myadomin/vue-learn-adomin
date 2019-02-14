@@ -9,6 +9,5 @@ export default {
 }
 </script>
 
-<style lang="stylus">
-@import './styles/base.styl';
+<style lang="less">
 </style>

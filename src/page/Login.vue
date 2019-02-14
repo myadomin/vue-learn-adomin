@@ -55,17 +55,21 @@ export default {
 }
 </script>
 
-<style lang="stylus" scoped>
-.el-container
+<style lang="less" scoped>
+.el-container {
   height: 100vh;
   background: #f0f2f5;
-.loginForm
+}
+.loginForm {
   width: 400px;
   margin: 0 auto;
-.title
+}
+.title {
   text-indent: 100px;
   margin: 200px 0 30px 0;
   font-size: 18px;
-.btn-login
-  width 100%
+}
+.btn-login {
+  width: 100%;
+}
 </style>

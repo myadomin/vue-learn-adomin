@@ -1,7 +1,8 @@
 <style src="todomvc-app-css/index.css"></style>
-<style scoped lang="stylus">
-.todoapp
-  margin-top: 200px
+<style scoped lang="less">
+.todoapp {
+  margin-top: 200px;
+}
 </style>
 
 <template>

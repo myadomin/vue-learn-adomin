@@ -30,8 +30,9 @@ export default {
 }
 </script>
 
-<style lang="stylus" scoped>
-h1
+<style lang="less" scoped>
+h1 {
   top: -100px
+}
 </style>
 

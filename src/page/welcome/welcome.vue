@@ -24,10 +24,10 @@ export default {
 }
 </script>
 
-<style lang="stylus" scoped>
-.home
-.content
+<style lang="less" scoped>
+.content {
   text-align: center;
   margin-top: 50px;
   font-size: 20px;
+}
 </style>
