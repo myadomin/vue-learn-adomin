@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="content">
-      vue+webpack+vuex+vue-router+axios+elementUI+less+mock的开发脚手架
+      这里有一些vue例子
     </div>
   </div>
 </template>

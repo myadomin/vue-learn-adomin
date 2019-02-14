@@ -1,0 +1,83 @@
+@import "./normalize.less";
+
+body {
+  font: 16px/1.5 "Microsoft YaHei", Helvetica Neue, Helvetica, Arial, sans-serif;
+  color: #444;
+}
+
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre, 
+form,fieldset,input,textarea,p,blockquote,th,td { 
+  padding: 0; 
+  margin: 0; 
+} 
+
+table { 
+  border-collapse: collapse; 
+  border-spacing: 0; 
+} 
+
+fieldset,img { 
+  border: 0; 
+} 
+
+ol,ul { 
+  list-style: none; 
+} 
+
+caption,th { 
+  text-align: left; 
+}
+
+h1,h2,h3,h4,h5,h6 { 
+  font-weight: normal; 
+} 
+
+q:before,q:after { 
+  content: ''; 
+}
+abbr,acronym {
+  border: 0; 
+}
+
+a {
+	text-decoration: none;
+  color: #409EFF;
+}
+
+.clearfix {
+  zoom: 1;
+}
+
+.clearfix:after{
+  content: 'clear';
+  display: block;
+  visibility: hidden;
+  clear: both;
+  line-height: 0;
+  height: 0;
+}
+
+// scrollbar定制
+::-webkit-scrollbar {
+  height: 12px;
+  width: 4px;
+  background-color:transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #5b5b5b;
+  width: 8px;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-corner {
+  border-radius: 4px;
+}
+body {
+  scrollbar-face-color: #5b5b5b;
+  scrollbar-arrow-color: #5b5b5b;
+  scrollbar-highlight-color: #5b5b5b;
+  scrollbar-track-color: #d0d0d0;
+  scrollbar-arrow-color:  #d0d0d0;
+  scrollbar-3dlight-color: #d0d0d0;
+}

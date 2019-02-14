@@ -1,5 +1,5 @@
 {
-  "name": "vuetemp",
+  "name": "adomin",
   "version": "1.0.0",
   "description": "vue project",
   "author": "luominmin",
@@ -59,8 +59,10 @@
     "html-webpack-plugin": "~2.24.1",
     "less": "^3.9.0",
     "less-loader": "^4.1.0",
+    "opn": "^5.4.0",
     "rimraf": "~2.5.4",
     "style-loader": "~0.13.2",
+    "todomvc-app-css": "~2.1.2",
     "url-loader": "~0.5.8",
     "vue-loader": "~13.7.2",
     "vue-style-loader": "~2.0.3",
