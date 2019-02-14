@@ -1,8 +1,8 @@
 <template>
-  <el-container>
+  <el-container class="wrap-container">
     <el-form :model="loginForm" :rules="rules" ref="loginForm" 
     label-width="80px" class="loginForm">
-      <div class="title">qTrade - 后台管理系统</div>
+      <div class="title">xxxx - 后台管理系统</div>
       <el-form-item label="用户名" prop="username">
         <el-input v-model="loginForm.username"></el-input>
       </el-form-item>
@@ -56,7 +56,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.el-container {
+.wrap-container {
   height: 100vh;
   background: #f0f2f5;
 }
@@ -65,7 +65,7 @@ export default {
   margin: 0 auto;
 }
 .title {
-  text-indent: 100px;
+  text-align: center;
   margin: 200px 0 30px 0;
   font-size: 18px;
 }
