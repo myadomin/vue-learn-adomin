@@ -1,4 +1,4 @@
-import API from '@/page/example/shoppingCart/api/shop'
+import API from '@src/page/example/shoppingCart/api/shop'
 
 export default {
   namespaced: true,

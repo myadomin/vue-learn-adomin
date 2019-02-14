@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import urls from '@/config/urls.js'
+import urls from '@src/config/urls.js'
 import { mapState } from 'vuex'
 
 export default {

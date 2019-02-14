@@ -15,8 +15,7 @@ const webpackConfigDev = {
   plugins: [
     new webpack.DefinePlugin({
       // vue源码入口会判断process.env.NODE_ENV是development还是production做优化处理
-      // 定义process.env.NODE_ENV让vue源码读取 这里的process.env.NODE_ENV是给vue源码及业务组件读取的
-      // 注意区别npm script cross-env NODE_ENV=dev 这个只能在webpack配置中读取到
+      // 定义process.env.NODE_ENV让vue源码读取 这里的process.env.NODE_ENV只可以在vue源码及项目业务组件中读取
       'process.env.NODE_ENV': JSON.stringify('development'),
       // 定义后给urls.js用
       'SERVER': JSON.stringify('sameDomain')
@@ -24,9 +23,10 @@ const webpackConfigDev = {
     // 控制台打印
     new FriendlyErrorsWebpackPlugin({
       compilationSuccessInfo: {
-        // 测试传的参数PROXY_ENV
+        // 通过 npm script cross-env NODE_ENV=abc 传参数
+        // 这个参数只能在webpack配置中读取到
         messages: [`PROXY_ENV: ${process.env.PROXY_ENV}`],
-        notes: ['Some additionnal notes to be displayed unpon successful compilation']
+        notes: ['this is some notes']
       },
       onErrors: function (severity, errors) {
       }
@@ -37,15 +37,14 @@ const webpackConfigDev = {
   devServer: {
     host: 'localhost',
     port: 8100,
-    // 自动打开网页
     open: true,
     // necessary for FriendlyErrorsPlugin
     quiet: true,
     proxy: {
-      '/api/*': {
-        target: 'http://localhost:3001/',
-        changeOrigin: true
-      }
+      // '/api/*': {
+      //   target: 'http://localhost:3001/',
+      //   changeOrigin: true
+      // }
     }
   }
 }
