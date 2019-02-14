@@ -1,16 +1,15 @@
 {
-  "name": "{{projectName}}",
-  "version": "{{projectVersion}}",
-  "description": "{{projectDescription}}",
+  "name": "adomin",
+  "version": "1.0.0",
+  "description": "vue project",
   "author": "luominmin",
   "private": true,
   "scripts": {
     "start": "npm run dev",
     "dev": "cross-env PROXY_ENV=abc webpack-dev-server --hot --config ./scripts/webpack.dev.config.js",
+    "build": "rimraf dist && webpack --config ./scripts/webpack.prod.config.js --progress --env=sameDomain",
     "build-test": "rimraf dist && webpack --config ./scripts/webpack.prod.config.js --progress --env=test",
-    "build-prod": "rimraf dist && webpack --config ./scripts/webpack.prod.config.js --progress --env=prod",
-    "server-test": "node ./server/test.js",
-    "server-prod": "node ./server/prod.js"
+    "build-prod": "rimraf dist && webpack --config ./scripts/webpack.prod.config.js --progress --env=prod"
   },
   "dependencies": {
     "axios": "~0.17.0",

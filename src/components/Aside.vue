@@ -19,7 +19,6 @@
             welcome
           </el-menu-item>
           <el-menu-item index="/mock"><router-link to="/mock">mock</router-link></el-menu-item>
-          <el-menu-item index="/test"><router-link to="/test">test</router-link></el-menu-item>
         </el-submenu>
         <el-submenu index="2">
           <template slot="title">

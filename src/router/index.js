@@ -3,7 +3,6 @@ const Home = () => import('@/page/Home')
 const Login = () => import('@/page/Login')
 const Welcome = () => import('@/page/welcome/Welcome')
 const Mock = () => import('@/page/mock/Mock')
-const Test = () => import('@/page/test/Test')
 const Counter = () => import('@/page/example/counter/Index')
 const ShoppingCart = () => import('@/page/example/shoppingCart/Index')
 const Todomvc = () => import('@/page/example/todomvc/Index')
@@ -21,10 +20,6 @@ const routes = [
       {
         path: '/mock',
         component: Mock
-      },
-      {
-        path: '/test',
-        component: Test
       },
       {
         path: '/counter',

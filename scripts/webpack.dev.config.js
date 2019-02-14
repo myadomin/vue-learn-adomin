@@ -19,7 +19,7 @@ const webpackConfigDev = {
       // 注意区别npm script cross-env NODE_ENV=dev 这个只能在webpack配置中读取到
       'process.env.NODE_ENV': JSON.stringify('development'),
       // 定义后给urls.js用
-      'SERVER': JSON.stringify('localhost')
+      'SERVER': JSON.stringify('sameDomain')
     }),
     // 控制台打印
     new FriendlyErrorsWebpackPlugin({

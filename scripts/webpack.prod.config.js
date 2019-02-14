@@ -16,18 +16,18 @@ const webpackConfigProd = {
   },
   plugins: [
     // 压缩优化代码
-    new webpack.optimize.UglifyJsPlugin({ minimize: true }),
+    new webpack.optimize.UglifyJsPlugin({ minimize: true })
     // 打出zip包
-    new FileManagerPlugin({
-      onEnd: {
-        mkdir: ['./dist-package'],
-        archive: [
-          {
-            source: './dist', destination: './dist-package/dist.zip'
-          }
-        ]
-      }
-    })
+    // new FileManagerPlugin({
+    //   onEnd: {
+    //     mkdir: ['./dist-package'],
+    //     archive: [
+    //       {
+    //         source: './dist', destination: './dist-package/dist.zip'
+    //       }
+    //     ]
+    //   }
+    // })
     // http://localhost:3011/ 查看每个包大小 优化包大小用
     // new BundleAnalyzerPlugin({ analyzerPort: 3011 })
   ],
@@ -35,18 +35,24 @@ const webpackConfigProd = {
 }
 
 module.exports = (env) => {
-  // npm run build-test
+  // 定义SERVER 给urls.js用
   if (env === 'test') {
     webpackConfigProd.plugins.push(new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production'),
-      // 定义后给urls.js用
+      // npm run build-test
       'SERVER': JSON.stringify('test')
     }))
-  } else {
+  } else if (env === 'prod') {
     // npm run build-prod
     webpackConfigProd.plugins.push(new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production'),
       'SERVER': JSON.stringify('prod')
+    }))
+  } else {
+    // npm run build
+    webpackConfigProd.plugins.push(new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production'),
+      'SERVER': JSON.stringify('sameDomain')
     }))
   }
   return merge(webpackConfigBase, webpackConfigProd)
