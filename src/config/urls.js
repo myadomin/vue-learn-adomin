@@ -10,8 +10,10 @@ const serverDict = {
 // npm run build: webpack.DefinePlugin定义SERVER是sameDomain, ctx是'' 同域请求
 // npm run build-test: webpack.DefinePlugin定义SERVER是test, ctx是测试服地址 跨域请求
 // npm run build-prod: webpack.DefinePlugin定义SERVER是prod, ctx是生产服地址 跨域请求
-const ctx = serverDict[SERVER]
+// const ctx = serverDict[SERVER]
 /*eslint-disable*/
+
+const ctx = serverDict['sameDomain']
 
 export default {
   product_all: `${ctx}/product/all`,

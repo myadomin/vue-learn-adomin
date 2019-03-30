@@ -1,7 +1,6 @@
 <template>
   <el-container class="wrap-container">
-    <el-form :model="loginForm" :rules="rules" ref="loginForm" 
-    label-width="80px" class="loginForm">
+    <el-form :model="loginForm" :rules="rules" ref="loginForm" label-width="80px" class="loginForm">
       <div class="title">xxxx - 后台管理系统</div>
       <el-form-item label="用户名" prop="username">
         <el-input v-model="loginForm.username"></el-input>
