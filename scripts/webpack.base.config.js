@@ -5,6 +5,7 @@ const resolve = (relatedPath) => path.resolve(__dirname, relatedPath)
 
 const webpackConfigBase = {
   entry: {
+    // 一些不常变化的库打包成vendor.js
     vendor: resolve('../src/vendor.js'),
     main: resolve('../src/main.js')
   },
@@ -67,19 +68,15 @@ const webpackConfigBase = {
     new HtmlWebpackPlugin({
       template: resolve('../src/index.html')
     }),
-    // 参考 https://www.jb51.net/article/131865.htm
+    // https://www.jb51.net/article/131865.htm
+    // 抽取chunk vendor.js
     new webpack.optimize.CommonsChunkPlugin({
       names: ['vendor']
     }),
-    // 如果不配置下面 只有main.js和vendor.js 每次修改代码后打包 这两个js的chunkhash值都变化了 不利于vendor.js的缓存
-    // 配置了下面 每次修改代码后打包 只变化main mainfest的chunkhash, vendor chunkhash不变化 可以缓存vendor
-    // filename必须使用chunkhash才能让以上规则生效
-    // 开发环境webpack-dev-server必须用的hash不能用chunkhash 所以开发环境以上规则不生效
+    // vendor.js中变化的部分抽取为manifest.js
+    // filename用chunkhash才能保证vendor.hashxxx.js的hash值不变化
+    // 然后设置一个长的max-age缓存，之后vendor.hashxxx.js就都是缓存加载了
     new webpack.optimize.CommonsChunkPlugin({
-      // vendor包括的是一些不常变化的库
-      // manifest再抽出此次打包过程中vendor这些库变化的部分(一般都很小)
-      // 所以mainfest.js很小每次chunkhash变化了请求也无所谓
-      // vendor.js很大 但是chunkhash不变化 一直缓存着 从而提高加载速度
       name: 'manifest',
       chunks: ['vendor']
     })

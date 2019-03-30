@@ -7,3 +7,7 @@
 * `npm build` 打包 urls.js里的url请求同域
 * `npm run build-test` 打包 urls.js里的url请求到测试服
 * `npm run build-prod` 打包 urls.js里的url请求到生产服
+
+## 建议做
+* nginx开启gzip压缩
+* nginx设置Cache-Control: max-age及Etag

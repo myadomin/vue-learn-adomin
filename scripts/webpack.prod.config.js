@@ -11,23 +11,12 @@ const webpackConfigProd = {
   output: {
     // 用chunkhash 保证每次打包后vendor的hash都不变化 缓存vendor
     filename: '[name].[chunkhash].js',
-    // 部署到生产 path是打包出的index.html的同级目录
+    // 打包后 引用任何文件都是./(index.html的同级目录)
     publicPath: './'
   },
   plugins: [
     // 压缩优化代码
     new webpack.optimize.UglifyJsPlugin({ minimize: true })
-    // 打出zip包
-    // new FileManagerPlugin({
-    //   onEnd: {
-    //     mkdir: ['./dist-package'],
-    //     archive: [
-    //       {
-    //         source: './dist', destination: './dist-package/dist.zip'
-    //       }
-    //     ]
-    //   }
-    // })
     // http://localhost:3011/ 查看每个包大小 优化包大小用
     // new BundleAnalyzerPlugin({ analyzerPort: 3011 })
   ],
