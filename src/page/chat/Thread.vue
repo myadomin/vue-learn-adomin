@@ -1,16 +1,16 @@
 <template>
   <ul class="thread-list">
-    <li v-for="thread in threads" 
-      :key="thread.id" 
+    <li v-for="thread in threads"
+      :key="thread.id"
       :class="{'active': thread.id === currentThread.id}"
       @click="changeThread(thread.id)"
       class="thread-list-item">
       <h5 class="thread-name">
         {{ thread.name }}
-      </h5> 
+      </h5>
       <div class="thread-time">
       {{ thread.lastMessage.time }}
-      </div> 
+      </div>
       <div class="thread-last-message">
       {{ thread.lastMessage.text }}
       </div>

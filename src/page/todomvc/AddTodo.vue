@@ -1,12 +1,12 @@
 <template>
   <header class="header">
-    <h1>todos</h1> 
-    <input 
+    <h1>todos</h1>
+    <input
       placeholder="What needs to be done?"
       v-model="todo"
       @keydown.enter="handleAddTodo"
       class="new-todo" />
-  </header> 
+  </header>
 </template>
 
 <script>
@@ -35,4 +35,3 @@ h1 {
   top: -100px
 }
 </style>
-

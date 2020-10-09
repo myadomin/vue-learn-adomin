@@ -1,7 +1,8 @@
 import axios from 'axios'
 
-// 允许跨域传输cookie
+// 允许跨域传输cookie 如果前后台非同域部署需要用
 axios.defaults.withCredentials = true
+
 // 添加请求拦截器
 axios.interceptors.request.use(config => {
   return config

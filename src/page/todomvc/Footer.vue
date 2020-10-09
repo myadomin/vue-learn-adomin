@@ -1,16 +1,16 @@
 <template>
   <footer class="footer" v-show="todoList.length">
-    <span class="todo-count"><strong>{{ todoItemsLeft }}</strong> items left </span> 
+    <span class="todo-count"><strong>{{ todoItemsLeft }}</strong> items left </span>
     <ul class="filters">
       <li v-for="filter in filters" :key="filter">
-        <a 
+        <a
           style="cursor: pointer"
           :class="{'selected': currentFilter === filter}"
           @click="filterTodos(filter)">
           {{ filter }}
         </a>
       </li>
-    </ul> 
+    </ul>
     <button class="clear-completed" @click="clearCompleted"> Clear completed </button>
   </footer>
 </template>

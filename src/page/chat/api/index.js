@@ -1,5 +1,3 @@
-import { resolve } from 'when'
-
 const data = require('./mock-data')
 const LATENCY = 400
 

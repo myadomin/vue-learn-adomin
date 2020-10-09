@@ -1,14 +1,14 @@
 <template>
-  <li class="todo" 
+  <li class="todo"
     @dblclick="isEditing = true"
     :class="{'completed': todo.isCompleted, 'editing': isEditing}">
     <div class="view">
-      <input type="checkbox" class="toggle" @change="toggleTodo(todo)" :checked="todo.isCompleted" /> 
-      <label @click="toggleTodo(todo)">{{ todo.text }}</label> 
+      <input type="checkbox" class="toggle" @change="toggleTodo(todo)" :checked="todo.isCompleted" />
+      <label @click="toggleTodo(todo)">{{ todo.text }}</label>
       <button class="destroy" @click="delTodo(todo)"></button>
-    </div> 
-    <input class="edit" 
-      v-show="isEditing" 
+    </div>
+    <input class="edit"
+      v-show="isEditing"
       v-focus="isEditing"
       @keyup.enter="(ev) => {
         doneEdit(ev, todo)
