@@ -6,40 +6,28 @@ const webpackConfigBase = require('./webpack.base.config')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 
 const webpackConfigDev = {
-  output: {
-    // webpack-dev-server不能用chunkhash 只能用hash
-    filename: '[name].[hash].js',
-    // 本地开发 path都是根路径localhost:8100
-    publicPath: '/'
-  },
+  // 定义process.env.NODE_ENV=development 让react源码和webpack读取 做优化处理
+  mode: 'development',
   plugins: [
     new webpack.DefinePlugin({
-      // vue源码入口会判断process.env.NODE_ENV是development还是production做优化处理
-      // 定义process.env.NODE_ENV让vue源码读取 这里的process.env.NODE_ENV只可以在vue源码及项目业务组件中读取
-      'process.env.NODE_ENV': JSON.stringify('development'),
       // 定义后给urls.js用
       'SERVER': JSON.stringify('sameDomain')
     }),
     // 控制台打印
     new FriendlyErrorsWebpackPlugin({
       compilationSuccessInfo: {
-        // 通过 npm script cross-env NODE_ENV=abc 传参数
-        // 这个参数只能在webpack配置中读取到
-        messages: [`PROXY_ENV: ${process.env.PROXY_ENV}`],
-        notes: ['this is some notes']
+        messages: [`this is some messages`]
       },
       onErrors: function (severity, errors) {
       }
     })
   ],
-  // dev环境用eval-source-map prod环境用source-map
-  devtool: 'eval-source-map',
   devServer: {
-    host: 'localhost',
     port: 8100,
     open: true,
-    // necessary for FriendlyErrorsPlugin
-    quiet: true,
+    // 后续热更新需要
+    // hot: true,
+    // 本地开发跨域请求设置
     proxy: {
       // '/api/*': {
       //   target: 'http://localhost:3001/',

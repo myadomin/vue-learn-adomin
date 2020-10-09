@@ -13,4 +13,4 @@
 * nginx设置Cache-Control: max-age及Etag
 
 ## mock
-* `vendor.js`中`import mock from '@src/mock'`
+* `main.js`中`import mock from '@src/mock'`

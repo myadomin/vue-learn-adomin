@@ -4,10 +4,10 @@ const path = require('path')
 const resolve = (relatedPath) => path.resolve(__dirname, relatedPath)
 const merge = require('webpack-merge')
 const webpackConfigBase = require('./webpack.base.config')
-const FileManagerPlugin = require('filemanager-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 const webpackConfigProd = {
+  mode: 'production',
   output: {
     // 用chunkhash 保证每次打包后vendor的hash都不变化 缓存vendor
     filename: '[name].[chunkhash].js',
@@ -15,12 +15,13 @@ const webpackConfigProd = {
     publicPath: './'
   },
   plugins: [
-    // 压缩优化代码
-    new webpack.optimize.UglifyJsPlugin({ minimize: true })
     // http://localhost:3011/ 查看每个包大小 优化包大小用
     // new BundleAnalyzerPlugin({ analyzerPort: 3011 })
   ],
-  devtool: 'source-map'
+  // 打包界面不出现性能建议warning
+  performance: {
+    hints: false
+  }
 }
 
 module.exports = (env) => {
