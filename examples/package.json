@@ -12,7 +12,7 @@
     "build-prod": "rimraf dist && webpack --config ./scripts/webpack.prod.config.js --progress --env=prod"
   },
   "dependencies": {
-    "axios": "~0.17.0",
+    "axios": "~0.20.0",
     "element-ui": "~2.4.11",
     "mockjs": "~1.0.1-beta3",
     "vue": "~2.5.2",
