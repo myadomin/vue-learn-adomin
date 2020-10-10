@@ -8,6 +8,9 @@ const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const webpackConfigDev = {
   // 定义process.env.NODE_ENV=development 让react源码和webpack读取 做优化处理
   mode: 'development',
+  output: {
+    filename: '[name].[hash].js'
+  },
   plugins: [
     new webpack.DefinePlugin({
       // 定义后给urls.js用
