@@ -1,7 +1,5 @@
 
 const webpack = require('webpack')
-const path = require('path')
-const resolve = (relatedPath) => path.resolve(__dirname, relatedPath)
 const merge = require('webpack-merge')
 const webpackConfigBase = require('./webpack.base.config')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
