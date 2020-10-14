@@ -18,10 +18,14 @@ export default {
     return {
     }
   },
+  props: [],
   computed: {
     ...mapState('counter', [
       'number'
     ])
+  },
+  watch: {
+
   },
   created () {
   },

@@ -6,7 +6,7 @@
       </el-aside>
       <el-container class="wrap-container">
         <el-header class="wrap-header">
-          <Header />
+          <Header :title="title" />
         </el-header>
         <el-main class="wrap-main">
           <router-view></router-view>
@@ -26,6 +26,7 @@ export default {
   },
   data () {
     return {
+      title: 'vue-temp'
     }
   }
 }

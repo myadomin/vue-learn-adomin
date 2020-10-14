@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <div>111</div>
+    <div>{{title}}</div>
     <div>
       <el-dropdown style="cursor: pointer">
         <span class="el-dropdown-link">
@@ -25,6 +25,7 @@ export default {
     return {
     }
   },
+  props: ['title'],
   computed: {
   },
   created () {

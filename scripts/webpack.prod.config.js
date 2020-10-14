@@ -27,19 +27,16 @@ module.exports = (env) => {
   if (env === 'test') {
     // npm run build-test，通过 --env=test 传参
     webpackConfigProd.plugins.push(new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production'),
       'SERVER': JSON.stringify('test')
     }))
   } else if (env === 'prod') {
     // npm run build-prod，通过 --env=prod 传参
     webpackConfigProd.plugins.push(new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production'),
       'SERVER': JSON.stringify('prod')
     }))
   } else {
     // npm run build，通过 --env=sameDomain 传参
     webpackConfigProd.plugins.push(new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production'),
       'SERVER': JSON.stringify('sameDomain')
     }))
   }
